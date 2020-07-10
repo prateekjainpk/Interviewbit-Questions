@@ -1,19 +1,15 @@
-### Another version of LCS
-
-def solve(A):
-	n = len(A)
-	B = A[::-1]
-	dp = [[None]*(n+1) for i in range(n+1)]
-
-	for i in range(n+1):
-		for j in range(n+1):
-			if (i == 0 or j == 0):
-				dp[i][j] = 0
-			elif A[i-1] == B[j-1]:
-				dp[i][j] = dp[i-1][j-1] + 1
-			else:
-				dp[i][j] = max(dp[i-1][j] , dp[i][j-1])
-	return dp[n][n]
-
-A = "bebeeed"
-print(solve(A))
+class Solution:
+    def solve(self, A):
+        n = len(A)
+        B = A[::-1]
+        dp = [[None]*(n+1) for i in range(n+1)]
+    
+        for i in range(n+1):
+            for j in range(n+1):
+                if (i == 0 or j == 0):
+                    dp[i][j] = 0
+                elif A[i-1] == B[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j] , dp[i][j-1])
+        return dp[n][n]
