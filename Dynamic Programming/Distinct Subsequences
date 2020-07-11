@@ -1,0 +1,18 @@
+class Solution:
+
+	def numDistinct(S, T):
+		def dp(i,j):
+			ans = 0 
+			if j == len(T) or i == len(S):
+				ans = 1 if len(T) == j else 0
+			else:
+				ans = dp(i+1,j)
+				if S[i] == T[j]:
+					ans += dp(i+1,j+1)
+			return ans
+
+		for i in reversed(range(len(S)+1)):
+			for j in reversed(range(min(i+1, len(T)+1))):
+				dp(i,j)
+
+		return dp(0,0)
